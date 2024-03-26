@@ -10,6 +10,10 @@ License: GPLv2 or later
 */
 
 
+define ( 'CB_WP_REACT_VERSION', '1.0.0' );
+define ( 'CB_WP_REACT_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+define ( 'CB_WP_REACT_URL', trailingslashit( plugins_url('/', __FILE__ ) ) );
+
 add_action( 'admin_enqueue_scripts', 'load_admin_scripts');
 
 function load_admin_scripts() {
@@ -38,3 +42,6 @@ class CB_WP_Create_Admin_Page {
 }
 
 new CB_WP_Create_Admin_Page();
+
+
+require_once CB_WP_REACT_PATH . 'classes/rest-api-create.php';
