@@ -1,5 +1,8 @@
 <?php 
 
+//don't load this file directly
+defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
+
 class CBWP_REST_API_Create_Route {
 
     public function __construct() {
