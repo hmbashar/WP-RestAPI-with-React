@@ -13,22 +13,30 @@ import {
 
 
 const Widgets = () => {
-const [ApiData, setApiData] = useState();
-const url = `${appLocalizer.apiURL}/cbwp/v2/settings`;
+    const [ApiData, setApiData] = useState();
+    const url = `${appLocalizer.apiURL}/cbwp/v2/settings`;
 
-useEffect(() => {
-    axios.get(url).then((res) => {
-        setApiData(res.data);
-        console.log(res.data);
-    });
-}, []);
+    useEffect(() => {
+        axios.get(url).then((res) => {
+            setApiData(res.data);        
+        });
+    }, []);
 
-const data = ApiData;
+    const CBWPChartchangeFilter = (e) => {
+        const ndaysURL = `${appLocalizer.apiURL}/cbwp/v2/last-n-days/${e.target.value}`;
+        axios.get(ndaysURL).then((res) => {
+            setApiData(res.data);  
+            console.log(res.data);      
+        });
+    }
+
+    const data = ApiData;
+
   return <div>
         <h2 style={{textAlign: 'center'}}>Chart Widgets</h2>
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '10px', margin: '10px 0'}}>
             <h4>Select Time Range</h4>
-            <select>
+            <select onChange= {CBWPChartchangeFilter}>
                 <option value="7">Last 7 Days</option>
                 <option value="15">Last 15 Days</option>
                 <option value="30">Last 30 Days</option>

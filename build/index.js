@@ -155,9 +155,15 @@ const Widgets = () => {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url).then(res => {
       setApiData(res.data);
-      console.log(res.data);
     });
   }, []);
+  const CBWPChartchangeFilter = e => {
+    const ndaysURL = `${appLocalizer.apiURL}/cbwp/v2/last-n-days/${e.target.value}`;
+    axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(ndaysURL).then(res => {
+      setApiData(res.data);
+      console.log(res.data);
+    });
+  };
   const data = ApiData;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     style: {
@@ -172,7 +178,9 @@ const Widgets = () => {
       padding: '10px',
       margin: '10px 0'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Select Time Range"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Select Time Range"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    onChange: CBWPChartchangeFilter
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "7"
   }, "Last 7 Days"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "15"
