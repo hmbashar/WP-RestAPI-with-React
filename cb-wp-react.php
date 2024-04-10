@@ -77,9 +77,9 @@ class CB_WP_Create_Admin_Page {
         $insert_query = "INSERT INTO $table_name (name, uv, pv, amt, dateT) VALUES 
         ('Page A', 4000, 2400, 10000, '2022-09-01'), 
         ('Page B', 3000, 1398, 2000, '2022-09-01'), 
-        ('Page C', 100, 100, 100, '2022-09-01'), 
-        ('Page D', 200, 200, 200, '2022-09-01'), 
-        ('Page E', 300, 300, 300, '2022-09-01')";
+        ('Page C', 10000, 100, 100, '2022-09-01'), 
+        ('Page D', 200, 20000, 200, '2022-09-01'), 
+        ('Page E', 4300, 3000, 300, '2022-09-01')";
         $wpdb->query($insert_query);
     }
 
