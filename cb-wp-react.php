@@ -52,7 +52,7 @@ class CB_WP_Create_Admin_Page {
     }
 
     public function cb_wp_react_widget() {
-        echo '<div class="cb-wp-react-dash-wrap"><div id="cb-wp-admin-dash-app">Hello</div></div>';
+        echo '<div class="cb-wp-react-dash-wrap"><div id="cb-wp-admin-dash-app"></div></div>';
     }
 
 }
