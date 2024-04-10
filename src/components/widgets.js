@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   LineChart,
   Line,
@@ -12,6 +13,14 @@ import {
 
 
 const Widgets = () => {
+const [ApiData, setApiData] = useState();
+const url = `${appLocalizer.apiURL}/cbwp/v2/settings`;
+
+useEffect(() => {
+    axios.get(url).then((res) => {
+       console.log(res);
+    });
+}, []);
 
 const data = [
     {

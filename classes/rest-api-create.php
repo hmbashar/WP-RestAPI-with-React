@@ -3,7 +3,7 @@
 //don't load this file directly
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
-class CBWP_REST_API_Create_Route {
+class CBWP_REST_API {
 
     public function __construct() {
 
@@ -12,52 +12,29 @@ class CBWP_REST_API_Create_Route {
 
     public function create_rest_routes() {
 
-        register_rest_route( 'wprest/v1', '/settings', [
+        register_rest_route( 'cbwp/v2', '/settings', array(
             'methods' => 'GET',
             'callback' => array( $this, 'get_settings' ),
-            'permission_callback' => [$this, 'get_settings_permission']
-        ]);
-
-        register_rest_route( 'wprest/v1', '/settings', [
-            'methods' => 'POST',
-            'callback' => array( $this, 'save_settings' ),
-            //'permission_callback' => [$this, 'get_settings_permission']
-        ]);
+            'permission_callback' => [$this, 'get_settings_permission'],
+        ) );
     }
 
-    public function get_settings(  ) {
-     
-        $firstname = get_option( 'react_firstName' );
-        $lastname = get_option( 'react_lastName' );
-        $email = get_option( 'react_email' );
+    public function get_settings(  ) {  
+        global $wpdb;
+        $table_name = $wpdb->prefix . "chartTable";
+        $sql = "SELECT * FROM $table_name";
+        $results = $wpdb->get_results(
+            $wpdb->prepare( $sql ), ARRAY_A
+        );
+        return $results;
         
-        $response = array(    
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email
-         );
-
-        return rest_ensure_response( $response );
-
     }
 
-    public function get_settings_permission(  ) {
+    public function get_settings_permission() {
         return true;
     }
 
-    public function save_settings( $request ) {
-     
-        $firstname = sanitize_text_field( $request['firstname'] );
-        $lastname = sanitize_text_field( $request['lastname'] );
-        $email = sanitize_email( $request['email'] );
-
-        update_option( 'react_firstName', $firstname );
-        update_option( 'react_lastName', $lastname );
-        update_option( 'react_email', $email );
-
-        return rest_ensure_response( 'success' );
-    }
 
 }
 
-new CBWP_REST_API_Create_Route();
+new CBWP_REST_API();

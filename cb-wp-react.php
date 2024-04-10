@@ -88,5 +88,6 @@ class CB_WP_Create_Admin_Page {
 new CB_WP_Create_Admin_Page();
 
 
+//require_once CB_WP_REACT_PATH . 'classes/rest-api-create-route.php';
 require_once CB_WP_REACT_PATH . 'classes/rest-api-create.php';
 
