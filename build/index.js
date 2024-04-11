@@ -16,14 +16,106 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/settings */ "./src/components/settings.js");
 /* harmony import */ var _components_widgets__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/widgets */ "./src/components/widgets.js");
+/* harmony import */ var _components_Posts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Posts */ "./src/components/Posts.js");
+/* harmony import */ var _components_Jobs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Jobs */ "./src/components/Jobs.js");
+
+
 
 
 
 
 function App() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_widgets__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_widgets__WEBPACK_IMPORTED_MODULE_2__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Jobs__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/components/Jobs.js":
+/*!********************************!*\
+  !*** ./src/components/Jobs.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const JobList = () => {
+  const [jobPosts, setJobPosts] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const fetchJobDetails = async () => {
+      const response = await fetch("http://plugindev.test/wp-json/wp/v2/abcelebiz-jobs/");
+      const data = await response.json();
+      console.log(data); // Check the full structure in the console
+      setJobPosts(data);
+    };
+    fetchJobDetails();
+  }, []);
+  if (jobPosts.length === 0) return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Loading...");
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "job-list"
+  }, jobPosts.map(post => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: post.id,
+    className: "job-details"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    dangerouslySetInnerHTML: {
+      __html: post.title.rendered
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Company Name:"), " ", post._abcelebiz_company_name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Deadline:"), " ", post._abcelebiz_deadline || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Job Type:"), " ", post._abcelebiz_job_type || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Salary Range:"), " ", post._abcelebiz_salary_range || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Experience Required:"), " ", post._abcelebiz_experience || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Job Timing:"), " ", post._abcelebiz_job_time || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Job Location:"), " ", post._abcelebiz_job_location || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Job Level:"), " ", post._abcelebiz_job_level || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Qualifications:"), " ", post._abcelebiz_qualification || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Vacancies:"), " ", post._abcelebiz_vacancy || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Short Description:"), " ", post._abcelebiz_short_description || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Working Hours:"), " ", post._abcelebiz_working_hours || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Working Days:"), " ", post._abcelebiz_working_days || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Skills Required:"), " ", post._abcelebiz_skills_required || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Founded In:"), " ", post._abcelebiz_founded_in || "Not specified"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Career Page URL:"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: post._abcelebiz_career_page_url,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, post._abcelebiz_career_page_url)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Apply Link:"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: post._abcelebiz_apply_link,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, post._abcelebiz_apply_text || "Apply Here")))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JobList);
+
+/***/ }),
+
+/***/ "./src/components/Posts.js":
+/*!*********************************!*\
+  !*** ./src/components/Posts.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function WordPressPosts() {
+  const [posts, setPosts] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetch('http://plugindev.test/wp-json/wp/v2/posts').then(response => response.json()).then(data => {
+      setPosts(data);
+    }).catch(error => console.error('Error fetching posts:', error));
+  }, []);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, posts.map(post => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: post.id
+  }, console.log(post), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+    dangerouslySetInnerHTML: {
+      __html: post.title.rendered
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    dangerouslySetInnerHTML: {
+      __html: post.content.rendered
+    }
+  }))));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WordPressPosts);
 
 /***/ }),
 

@@ -92,3 +92,42 @@ new CB_WP_Create_Admin_Page();
 //require_once CB_WP_REACT_PATH . 'classes/rest-api-create-route.php';
 require_once CB_WP_REACT_PATH . 'classes/rest-api-create.php';
 
+
+function abcelebiz_custom_fields_to_rest_api() {
+    $fields_to_expose = [
+        '_abcelebiz_company_name',
+        '_abcelebiz_company_logo',
+        '_abcelebiz_deadline',
+        '_abcelebiz_job_type',
+        '_abcelebiz_salary_range',
+        '_abcelebiz_experience',
+        '_abcelebiz_apply_text',
+        '_abcelebiz_apply_link',
+        '_abcelebiz_job_time',
+        '_abcelebiz_job_location',
+        '_abcelebiz_job_level',
+        '_abcelebiz_qualification',
+        '_abcelebiz_vacancy',
+        '_abcelebiz_short_description',
+        '_abcelebiz_working_hours',
+        '_abcelebiz_working_days',
+        '_abcelebiz_career_page_url',
+        '_abcelebiz_skills_required',
+        '_abcelebiz_founded_in',
+        '_abcelebiz_form_shortcode',
+    ];
+
+    foreach ($fields_to_expose as $field) {
+        register_rest_field('abcelebiz-jobs', $field, array(
+            'get_callback'    => 'abcelebiz_get_custom_field',
+            'update_callback' => null,
+            'schema'          => null,
+        ));
+    }
+}
+
+function abcelebiz_get_custom_field($object, $field_name, $request) {
+    return get_post_meta($object['id'], $field_name, true);
+}
+
+add_action('rest_api_init', 'abcelebiz_custom_fields_to_rest_api');
